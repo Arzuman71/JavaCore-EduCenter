@@ -21,9 +21,9 @@ public class StudentStorage {
         students = tmp;
     }
 
-    public Student getByName(String name) {
+    public Student getByEmail(String email) {
         for (int i = 0; i < size; i++) {
-            if (students[i].getName().equals(name)) {
+            if (students[i].getEmail().equals(email)) {
                 return students[i];
             }
         }
