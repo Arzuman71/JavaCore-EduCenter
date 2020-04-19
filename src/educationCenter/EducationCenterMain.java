@@ -22,7 +22,7 @@ public class EducationCenterMain implements Commands {
             try {
                 command = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Please input number!");
+                System.out.println(" Please input number ! ");
                 command = -1;
             }
             switch (command) {
@@ -48,25 +48,25 @@ public class EducationCenterMain implements Commands {
                     printStudentsByLessonName();
                     break;
                 default:
-                    System.out.println("Wrong command!");
+                    System.out.println(" Wrong command ! ");
             }
         }
     }
 
     private static void addStudent() {
         if (lessonStorage.isEmpty()) {
-            System.out.println("Please add lesson first:");
+            System.out.println(" Please add lesson first: ");
             return;
         }
         try {
             Lesson[] lessons = chooseLessons();
             if (lessons.length > 0) {
-                System.out.println("Please input Student data: name,surname,phone,email");
+                System.out.println(" Please input Student data: name,surname,phone,email");
                 String studentDataStr = scanner.nextLine();
                 String[] studentData = studentDataStr.split(",");
                 Student byEmail = studentStorage.getByEmail(studentData[3]);
                 if (byEmail != null) {
-                    System.out.println("Duplicate Student!");
+                    System.out.println(" Duplicate Student ! ");
                     addStudent();
                 } else {
                     Student student = new Student();
@@ -76,11 +76,11 @@ public class EducationCenterMain implements Commands {
                     student.setEmail(studentData[3]);
                     student.setLessons(lessons);
                     studentStorage.add(student);
-                    System.out.println("Thank you, Student was added");
+                    System.out.println(" Thank you, Student was added ");
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Invalid Data! please try again");
+            System.out.println(" Invalid Data! please try again ");
             addStudent();
         }
 
