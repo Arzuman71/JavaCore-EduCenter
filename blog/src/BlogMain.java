@@ -58,10 +58,10 @@ public class BlogMain implements Commands {
                                 postStorage.printAllPosts();
                                 break;
                             case SEARCH_BY_TITLE:
-                                SearchByTitle();
+                                searchByTitle();
                                 break;
                             case SEARCH_POST:
-                                SearchPost();
+                                searchPost();
                                 break;
                             case LOGOUT:
                                 //  isRun2 = false;
@@ -97,7 +97,7 @@ public class BlogMain implements Commands {
                                 addPost();
                                 break;
                             case SEARCH_POST:
-                                SearchPost();
+                                searchPost();
                                 break;
                             case POSTS_BY_CATEGORY:
                                 String category = scanner.nextLine();
@@ -107,7 +107,7 @@ public class BlogMain implements Commands {
                                 postStorage.printAllPosts();
                                 break;
                             case SEARCH_BY_TITLE:
-                                SearchByTitle();
+                                searchByTitle();
                                 break;
                             case LOGOUT:
                                 usermain = null;
@@ -156,17 +156,17 @@ public class BlogMain implements Commands {
 
     }
 
-    private static void SearchByTitle() {
+    private static void searchByTitle() {
         try {
             String title = scanner.nextLine();
             System.out.println(postStorage.getPostByTitle(title));
         } catch (PostNotFoundException e) {
             System.out.println("wrong name");
-            SearchByTitle();
+            searchByTitle();
         }
     }
 
-    private static void SearchPost() {
+    private static void searchPost() {
         System.out.println("write please");
         String Keyword = scanner.nextLine();
         postStorage.searchPostsByKeyword(Keyword);
@@ -181,6 +181,7 @@ public class BlogMain implements Commands {
             post1.setTitle(postMember[0]);
             post1.setText(postMember[1]);
             post1.setCategory(postMember[2]);
+            post1.setUser(usermain);
             postStorage.add(post1);
             System.out.println(" your post has been added ");
 
