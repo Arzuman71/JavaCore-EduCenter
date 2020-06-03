@@ -80,7 +80,9 @@ public class BlogMain implements Commands {
                     case LOGIN:
                         try {
                             login();
-                        } catch (ArrayIndexOutOfBoundsException e) {
+                        } catch (ArrayIndexOutOfBoundsException a) {
+                            login();
+                        } catch (IndexOutOfBoundsException e) {
                             login();
                         }
                         prindCommands();
@@ -145,15 +147,19 @@ public class BlogMain implements Commands {
 
     private static void login() {
 
-        System.out.println("Please input email, passwords ");
-        String emailPas = scanner.nextLine();
-        String[] emailAndPasswords = emailPas.split(",");
-        User user1 = userStorage.login(emailAndPasswords[0], emailAndPasswords[1]);
-        if (user1 == null) {
+        try {
+            System.out.println("Please input email, passwords ");
+
+            String emailPas = scanner.nextLine();
+            String[] emailAndPasswords = emailPas.split(",");
+            User user1 = userStorage.login(emailAndPasswords[0], emailAndPasswords[1]);
+            if (user1 == null) {
+                addUser();
+            }
+            usermain = user1;
+        } catch (ArrayIndexOutOfBoundsException e) {
             login();
         }
-        usermain = user1;
-
     }
 
     private static void searchByTitle() {
